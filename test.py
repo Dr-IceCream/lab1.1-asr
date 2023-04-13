@@ -11,7 +11,7 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 使用相对路径构建音频文件的绝对路径
-audio_file_path = os.path.join(script_dir, 'assets', 'Sunflower.wav')
+audio_file_path = os.path.join(script_dir, 'assets', 'Sunflower.mp3')
 
 # 使用绝对路径调用ShellExecute
 win32api.ShellExecute(0, 'open', audio_file_path, '', '', 1)

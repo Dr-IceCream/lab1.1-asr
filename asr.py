@@ -8,9 +8,9 @@ import threading
 import time
 import win32api
 import os
-import pyaudio
-import wave
 import pyautogui
+# import pyaudio
+# import wave
 
 
 class myWindow(QtWidgets.QMainWindow):
@@ -89,7 +89,7 @@ class myWindow(QtWidgets.QMainWindow):
                         # 获取当前脚本的绝对路径
                         script_dir = os.path.dirname(os.path.abspath(__file__))
                         # 使用相对路径构建音频文件的绝对路径
-                        audio_file_path = os.path.join(script_dir, 'assets', 'Sunflower.wav')
+                        audio_file_path = os.path.join(script_dir, 'assets', 'Sunflower.mp3')
                         # 使用绝对路径调用ShellExecute
                         win32api.ShellExecute(0, 'open', audio_file_path, '', '', 1)
                         # 使用不打开音乐播放器的方式播放音乐
@@ -123,22 +123,22 @@ class myWindow(QtWidgets.QMainWindow):
             current_text.append(f"You: {text}")
             self.ui.user_input_label.setText('\n'.join(current_text))
 
-    # 使用 PyAudio 播放音乐
-    def play_music(self, file_path):
-        CHUNK = 1024
-        wf = wave.open(file_path, 'rb')
-        p = pyaudio.PyAudio()
-        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
-                        channels=wf.getnchannels(),
-                        rate=wf.getframerate(),
-                        output=True)
-        data = wf.readframes(CHUNK)
-        while data:
-            stream.write(data)
-            data = wf.readframes(CHUNK)
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
+    # # 使用 PyAudio 播放音乐
+    # def play_music(self, file_path):
+    #     CHUNK = 1024
+    #     wf = wave.open(file_path, 'rb')
+    #     p = pyaudio.PyAudio()
+    #     stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+    #                     channels=wf.getnchannels(),
+    #                     rate=wf.getframerate(),
+    #                     output=True)
+    #     data = wf.readframes(CHUNK)
+    #     while data:
+    #         stream.write(data)
+    #         data = wf.readframes(CHUNK)
+    #     stream.stop_stream()
+    #     stream.close()
+    #     p.terminate()
 
 app = QtWidgets.QApplication([])
 application = myWindow()
